@@ -1,6 +1,6 @@
-import { BaseContext } from "./context";
+import { BaseContext } from "./Context/BaseContext";
 import { ICommunication } from "./Communication/ICommunication";
-import { OrchestrationCallback, OrchestrationStepCallback } from "./types";
+import { OrchestrationCallback, OrchestrationStepCallback } from "./Utilities/types";
 
 export class SagaJS {
     constructor(readonly communication: ICommunication) { }
@@ -42,10 +42,7 @@ export class SagaJS {
     public createOrchestrationInstruction(key: string, steps: string[]) {
         steps = [key, ...steps];
         this.communication.onOrchestration(key, (context) => {
-            console.log("createOrchestrationInstruction", context);
-            // const steps = ["Orchestration_1", "stepA", "stepB"];
             if (context.payload.error) {
-                // context.fail
                 context.startCompensation();
             }
             else {
@@ -59,6 +56,4 @@ export class SagaJS {
     public onOrchestrationNeeded(key: string, callback: OrchestrationCallback) {
         this.communication.onOrchestration(key, callback);
     }
-
-
 }

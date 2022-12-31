@@ -1,7 +1,9 @@
-import { BaseContext, OrchestrationContext, OrchestrationStepContext } from "../context";
+import { BaseContext } from "../Context/BaseContext";
 import { ICommunication } from "./ICommunication";
 import { ITransformer } from "../Transformer/ITransformer";
-import { OrchestrationCallback, OrchestrationStepCallback } from "../types";
+import { OrchestrationCallback, OrchestrationStepCallback } from "../Utilities/types";
+import { OrchestrationStepContext } from "../Context/OrchestrationStepContext";
+import { OrchestrationContext } from "../Context/OrchestrationContext";
 
 export class InMemoryCommunication extends ICommunication {
     constructor(protected readonly transformer: ITransformer) {

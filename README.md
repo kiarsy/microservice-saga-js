@@ -1,12 +1,15 @@
 # SagaJS
 
 ## TODO:
-0. add architecture view
-1. write readme
-2. status : running,completed,in_compensation,failed
-3. communicationTransportLayer : json | protoBuff
-4. compensation
-5. retry
-6. choregraphy
-7. timeout
-8. Wrappers
+
+- Key generator abstraction
+- corelation key and id key
+- add architecture view
+- write readme
+- status : running,completed,in_compensation,failed
+- communicationTransportLayer : json | protoBuff
+- compensation
+- retry
+- choregraphy
+- timeout
+- Wrappers

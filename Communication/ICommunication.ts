@@ -1,6 +1,6 @@
-import { BaseContext } from "../context";
+import { BaseContext } from "../Context/BaseContext";
 import { ITransformer } from "../Transformer/ITransformer";
-import { OrchestrationCallback, OrchestrationStepCallback } from "../types";
+import { OrchestrationCallback, OrchestrationStepCallback } from "../Utilities/types";
 
 export abstract class ICommunication {
     constructor(protected readonly transformer: ITransformer) { }
