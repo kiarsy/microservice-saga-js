@@ -2,6 +2,7 @@
 
 ## TODO:
 
+- abstraction for saving state
 - Key generator abstraction
 - corelation key and id key
 - add architecture view
