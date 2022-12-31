@@ -1,8 +1,8 @@
 import { SagaJS } from "../index";
 import { InMemoryCommunication } from "../Communication/inMemoryCommunication";
-import { StringTransformer } from "../Transformer/StringTransformer";
+import { JsonTransformer } from "../Transformer/JsonTransformer";
 
-const sagaJs = new SagaJS(new InMemoryCommunication(new StringTransformer));
+const sagaJs = new SagaJS(new InMemoryCommunication(new JsonTransformer()));
 
 sagaJs.onOrchestrationStep("stepA", (context) => {
     console.log("StepA", context);

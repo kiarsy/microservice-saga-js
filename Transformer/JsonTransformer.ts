@@ -1,6 +1,6 @@
 import { ITransformer } from "./ITransformer";
 
-export class StringTransformer extends ITransformer {
+export class JsonTransformer extends ITransformer {
     toBuffer(data: Record<string, any>): Buffer {
         return Buffer.from(JSON.stringify(data));
     }
