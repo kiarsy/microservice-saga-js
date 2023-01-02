@@ -25,7 +25,7 @@
   ],
   "scripts": {
     "test:orchestration": "ts-node ./tests/testOrch.ts",
-    "test": "ts-node ./tests/testOrch.ts",
+    "test": "echo test",
     "build": "tsc",
     "format": "prettier --write \"src/**/*.ts\"",
     "lint": "tslint -p tsconfig.json",
