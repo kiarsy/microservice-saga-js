@@ -1,59 +1,72 @@
 import { BaseContext } from "./Context/BaseContext";
 import { ICommunication } from "./Communication/ICommunication";
 import { OrchestrationCallback, OrchestrationStepCallback } from "./Utilities/types";
+import { StepType } from "./Utilities/StepType";
+import { IKeyRule } from "./KeyRule/IKeyRule";
+import { DefaultKeyRule } from "./KeyRule/DefaultKeyRule";
 
 export class SagaJS {
-    constructor(readonly communication: ICommunication) { }
+    constructor(
+        readonly communication: ICommunication,
+        readonly keyRule: IKeyRule = new DefaultKeyRule()) {
+        communication.keyRule = keyRule;
+    }
 
-    public runOrchestration(key: string, payload: any) {
-        const id = `${key}_asda-324-34-54-3-`;
+    public runOrchestration(orchestrationKey: string, payload: any) {
+        const id = `${orchestrationKey}_asda-324-34-54-3-`;
         const context = new BaseContext({
             id,
             communication: this.communication,
-            currentStep: key,
-            key,
-            nextStep: key,
+            stepKey: orchestrationKey,
+            orchestrationKey: orchestrationKey,
+            // nextStep: key,
             payload,
             steps: [],
             eventSequence: 0
         });
-        this.communication.sendEvent(key, context);
+        this.communication.sendEvent(orchestrationKey, context);
+    }
+
+    public createOrchestrationByInstruction(orchestrationKey: string, steps: string[]) {
+        const retryAttempt = 3;
+        this.communication.onOrchestration(orchestrationKey, (context, channel) => {
+            const keyOp = this.keyRule.destructKey(context.stepKey);
+
+            if (context.response === false && keyOp.type === StepType.Step && context.canRetry(retryAttempt)) {
+                context.setNextStep(keyOp.step);
+            }
+            //if compensation and compensation is failed
+            else if (keyOp.type === StepType.Compensation && context.response === false && context.canRetry(retryAttempt)) {
+                context.retryCompensation();
+            }
+            else if (keyOp.type === StepType.Compensation || context.response === false) {
+                //Compensation steps
+                if (context.setNextCompensation()) {
+                    console.log("End Compensation");
+                }
+            }
+            else {
+                const currentIndex = steps.indexOf(keyOp.step);
+                let step = steps[(currentIndex === steps.length - 1) ? -1 : currentIndex + 1];
+                if (step) {
+                    context.setNextStep(step);
+                }
+                else {
+                    console.log("End Orchestration");
+                }
+            }
+            this.communication.commit();
+        });
+    }
+
+    public createOrchestrationByCommand(orchestrationKey: string, callback: OrchestrationCallback) {
+        this.communication.onOrchestration(orchestrationKey, callback);
     }
 
     public runChoreography(key: string, payload: any) {
-        const id = `${key}_asda-324-34-54-3-`;
-        const context = new BaseContext({
-            id,
-            communication: this.communication,
-            key: '',
-            currentStep: key,
-            nextStep: key,
-            payload,
-            steps: [],
-            eventSequence: 0
-        })
-        this.communication.sendEvent(key, context);
     }
 
-    public onOrchestrationStep(key: string, callback: OrchestrationStepCallback) {
-        this.communication.onOrchestrationStep(key, callback);
-    }
-
-    public createOrchestrationInstruction(key: string, steps: string[]) {
-        steps = [key, ...steps];
-        this.communication.onOrchestration(key, (context) => {
-            if (context.payload.error) {
-                context.startCompensation();
-            }
-            else {
-                const currentIndex = steps.indexOf(context.currentStep);
-                let step = steps[(currentIndex === steps.length - 1) ? -1 : currentIndex + 1];
-                context.setNextStep(step);
-            }
-        });
-    }
-
-    public onOrchestrationNeeded(key: string, callback: OrchestrationCallback) {
-        this.communication.onOrchestration(key, callback);
+    public onOrchestrationStep(stepKey: string, stepType: StepType, callback: OrchestrationStepCallback) {
+        this.communication.onOrchestrationStep(this.keyRule.generateKeyFor(stepKey, stepType), callback);
     }
 }

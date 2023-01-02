@@ -3,14 +3,14 @@
 ## TODO:
 
 - abstraction for saving state
-- Key generator abstraction
+- orchestration must have final state > Pending, Completed, Failing, Failed
+- Key generator abstraction :: TICK
 - corelation key and id key
 - add architecture view
 - write readme
-- status : running,completed,in_compensation,failed
 - communicationTransportLayer : json | protoBuff
-- compensation
-- retry
+- compensation TICK
+- retry TICK
 - choregraphy
 - timeout
 - Wrappers

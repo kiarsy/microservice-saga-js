@@ -5,12 +5,15 @@ import { OrchestrationStepContext } from "../Context/OrchestrationStepContext";
 
 export type OrchestrationStepCallback = (context: OrchestrationStepContext) => void;
 export type ChoreographyStepCallback = (context: ChoreographyStepContext) => void;
-export type OrchestrationCallback = (context: OrchestrationContext) => void;
+export type OrchestrationCallback = (context: OrchestrationContext, channel: string) => void;
 
 export type SagaContextParam = {
-    id: string, key: string,
+    eventSequence: number,
+    id: string,
+    orchestrationKey: string,
     payload: any,
-    currentStep: string, nextStep: string,
-    steps: string[], eventSequence: number,
+    stepKey: string,
+    steps: string[],
+    response?: boolean,
     communication: ICommunication
 };

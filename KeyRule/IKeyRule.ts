@@ -3,7 +3,7 @@ import { StepType } from "../Utilities/StepType";
 export type KeyStruct =
     {
         step: string,
-        type: StepType
+        type: StepType | undefined
     };
 
 export interface IKeyRule {

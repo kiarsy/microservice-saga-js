@@ -1,28 +1,26 @@
 import { ICommunication } from "../Communication/ICommunication";
 import { SagaContextParam } from "../Utilities/types";
 
-
-
 export class BaseContext {
     _id: string;
-    _key: string;
+    _orchestrationKey: string;
     _payload: any;
-    _currentStep: string;
-    _nextStep: string;
+    _stepKey: string;
     _communication: ICommunication;
     _steps: string[];
     _eventSequence: number = 0;
+    _response?:boolean;
     constructor(
         params: SagaContextParam,
     ) {
         this._id = params.id;
-        this._key = params.key;
+        this._orchestrationKey = params.orchestrationKey;
         this._payload = params.payload;
-        this._currentStep = params.currentStep;
-        this._nextStep = params.nextStep;
+        this._stepKey = params.stepKey;
         this._communication = params.communication;
         this._steps = params.steps;
         this._eventSequence = params.eventSequence;
+        this._response = params.response;
     }
 
     // static fromJson(jsonString: string) {
@@ -32,12 +30,12 @@ export class BaseContext {
     toJson() {
         return {
             id: this._id,
-            key: this._key,
+            orchestrationKey: this._orchestrationKey,
             payload: this._payload,
-            currentStep: this._currentStep,
-            nextStep: this._nextStep,
+            stepKey: this._stepKey,
             steps: this._steps,
-            eventSequence: this._eventSequence
+            eventSequence: this._eventSequence,
+            response:this._response
         };
     }
 
