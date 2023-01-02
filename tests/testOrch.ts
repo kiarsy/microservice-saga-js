@@ -1,6 +1,6 @@
-import { SagaJS } from "../index";
-import { InMemoryCommunication } from "../Communication/inMemoryCommunication";
-import { StepType } from "../Utilities/StepType";
+import { SagaJS } from "../src/index";
+import { InMemoryCommunication } from "../src/Communication/inMemoryCommunication";
+import { StepType } from "../src/Utilities/StepType";
 
 const sagaJs = new SagaJS(new InMemoryCommunication());
 

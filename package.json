@@ -1,10 +1,16 @@
 {
   "name": "microservice-saga-js",
   "version": "1.0.3",
-  "main": "index.ts",
+  "main": "lib/index.js",
+  "types": "lib/index.d.ts",
   "license": "MIT",
+  "author": "Hossein Kiarsy Pour",
   "devDependencies": {
-    "@types/node": "^18.11.18"
+    "@types/node": "^18.11.18",
+    "prettier": "^2.8.1",
+    "tslint": "^6.1.3",
+    "tslint-config-prettier": "^1.18.0",
+    "typescript": "^4.9.4"
   },
   "repository": {
     "type": "git",
@@ -14,7 +20,16 @@
     "saga",
     "microservice"
   ],
+  "files": [
+    "lib/**/*"
+  ],
   "scripts": {
-    "test:orchestration": "ts-node ./test/testOrch.ts"
+    "test:orchestration": "ts-node ./tests/testOrch.ts",
+    "test": "ts-node ./tests/testOrch.ts",
+    "build": "tsc",
+    "format": "prettier --write \"src/**/*.ts\"",
+    "lint": "tslint -p tsconfig.json",
+    "prepare": "npm run build",
+    "prepublishOnly": "npm test && npm run lint"
   }
 }
