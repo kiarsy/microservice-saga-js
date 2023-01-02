@@ -1,6 +1,6 @@
 {
   "name": "microservice.saga.js",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "main": "index.ts",
   "license": "MIT",
   "devDependencies": {
@@ -12,7 +12,7 @@
   },
   "keywords": [
     "saga",
-    "microservice",
+    "microservice"
   ],
   "scripts": {
     "test:orchestration": "ts-node ./test/testOrch.ts"
