@@ -8,7 +8,7 @@ import { JsonTransformer } from "../Transformer/JsonTransformer";
 
 export class InMemoryCommunication extends ICommunication {
     commit(): void {
-        
+
     }
     constructor(protected readonly transformer: ITransformer = new JsonTransformer()) {
         super(transformer);
@@ -34,8 +34,8 @@ export class InMemoryCommunication extends ICommunication {
         this.stepListeners[key] = callback;
     }
 
-    onOrchestration(orchestrationKey: string, callback: OrchestrationCallback): void {
-        this.orchestrationListeners[orchestrationKey] = callback;
+    onOrchestration(orchestrationKey: string[], callback: OrchestrationCallback): void {
+        orchestrationKey.forEach(it => this.orchestrationListeners[it] = callback);
     }
 
     onChoreographyStep(key: string, callback: OrchestrationStepCallback): void {

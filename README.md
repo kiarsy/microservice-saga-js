@@ -14,3 +14,4 @@
 - choregraphy
 - timeout
 - Wrappers
+- status on each step

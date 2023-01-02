@@ -27,9 +27,8 @@ export class SagaJS {
         this.communication.sendEvent(orchestrationKey, context);
     }
 
-    public createOrchestrationByInstruction(orchestrationKey: string, steps: string[]) {
-        const retryAttempt = 3;
-        this.communication.onOrchestration(orchestrationKey, (context, channel) => {
+    public createOrchestrationByInstruction(orchestrationKey: string, steps: string[], retryAttempt: number = 3) {
+        this.communication.onOrchestration([orchestrationKey], (context, channel) => {
             const keyOp = this.keyRule.destructKey(context.stepKey);
 
             if (context.response === false && keyOp.type === StepType.Step && context.canRetry(retryAttempt)) {
@@ -59,7 +58,7 @@ export class SagaJS {
         });
     }
 
-    public createOrchestrationByCommand(orchestrationKey: string, callback: OrchestrationCallback) {
+    public createOrchestrationByCommand(orchestrationKey: string[], callback: OrchestrationCallback) {
         this.communication.onOrchestration(orchestrationKey, callback);
     }
 
