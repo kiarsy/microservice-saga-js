@@ -1,12 +1,20 @@
 {
-  "name": "sagajs",
+  "name": "microservice.saga.js",
   "version": "1.0.0",
   "main": "index.ts",
   "license": "MIT",
   "devDependencies": {
     "@types/node": "^18.11.18"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kiarsy/SagaJS.git"
+  },
+  "keywords": [
+    "saga",
+    "microservice",
+  ],
   "scripts": {
-    "test:orchestration" : "ts-node ./test/testOrch.ts"
+    "test:orchestration": "ts-node ./test/testOrch.ts"
   }
 }
