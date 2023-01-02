@@ -15,6 +15,7 @@
     "microservice"
   ],
   "scripts": {
-    "test:orchestration": "ts-node ./test/testOrch.ts"
+    "test:orchestration": "ts-node ./test/testOrch.ts",
+    "test": "ts-node ./test/testOrch.ts" 
   }
 }
