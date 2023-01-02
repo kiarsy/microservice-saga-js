@@ -9,8 +9,7 @@
 - [ ] corelation key and id key
 - [ ] create documentation on github pages
 - [ ] add architecture view
-- [ ] write readme
-- [ ] communicationTransportLayer : json | protoBuff
+- [x] communicationTransformLayer : json | protoBuff
 - [x] compensation
 - [x] retry
 - [ ] choregraphy
