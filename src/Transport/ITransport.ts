@@ -3,7 +3,7 @@ import { IKeyRule } from '../KeyRule/IKeyRule';
 import { ITransformer } from '../Transformer/ITransformer';
 import { OrchestrationCallback, OrchestrationStepCallback } from '../Utilities/types';
 
-export abstract class ICommunication {
+export abstract class ITransport {
   keyRule!: IKeyRule;
 
   constructor(protected readonly transformer: ITransformer) {}

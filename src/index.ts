@@ -1,12 +1,12 @@
 import { BaseContext } from './Context/BaseContext';
-import { ICommunication } from './Communication/ICommunication';
+import { ITransport } from './Transport/ITransport';
 import { OrchestrationCallback, OrchestrationStepCallback } from './Utilities/types';
 import { StepType } from './Utilities/StepType';
 import { IKeyRule } from './KeyRule/IKeyRule';
 import { DefaultKeyRule } from './KeyRule/DefaultKeyRule';
 
 export class SagaJS {
-  constructor(readonly communication: ICommunication, readonly keyRule: IKeyRule = new DefaultKeyRule()) {
+  constructor(readonly communication: ITransport, readonly keyRule: IKeyRule = new DefaultKeyRule()) {
     communication.keyRule = keyRule;
   }
 

@@ -1,4 +1,4 @@
-import { ICommunication } from '../Communication/ICommunication';
+import { ITransport } from '../Transport/ITransport';
 import { ChoreographyStepContext } from '../Context/ChoreographyStepContext';
 import { OrchestrationContext } from '../Context/OrchestrationContext';
 import { OrchestrationStepContext } from '../Context/OrchestrationStepContext';
@@ -15,5 +15,5 @@ export type SagaContextParam = {
   stepKey: string;
   steps: string[];
   response?: boolean;
-  communication: ICommunication;
+  communication: ITransport;
 };

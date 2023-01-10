@@ -1,12 +1,12 @@
 import { BaseContext } from '../Context/BaseContext';
-import { ICommunication } from './ICommunication';
+import { ITransport } from './ITransport';
 import { ITransformer } from '../Transformer/ITransformer';
 import { OrchestrationCallback, OrchestrationStepCallback } from '../Utilities/types';
 import { OrchestrationStepContext } from '../Context/OrchestrationStepContext';
 import { OrchestrationContext } from '../Context/OrchestrationContext';
 import { JsonTransformer } from '../Transformer/JsonTransformer';
 
-export class InMemoryCommunication extends ICommunication {
+export class InMemoryTransport extends ITransport {
   commit(): void {
     return;
   }

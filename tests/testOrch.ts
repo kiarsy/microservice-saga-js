@@ -8,6 +8,7 @@ sagaJs.onOrchestrationStep("stepA", StepType.Step, (context) => {
     console.log("StepA", context);
     context.complete({ stepA: 'done' });
 });
+
 sagaJs.onOrchestrationStep("stepA", StepType.Compensation, (context) => {
     console.log("StepA Compensation", context);
     context.complete({ CompensationA: 'done' });
@@ -20,7 +21,7 @@ sagaJs.onOrchestrationStep("stepB", StepType.Step, (context) => {
 
 sagaJs.onOrchestrationStep("stepB", StepType.Compensation, (context) => {
     console.log("stepB Compensation ", context);
-    if (Math.random() < 0.2) {
+    if (Math.random() < 0.1) {
         context.complete({ CompensationB: 'done' });
 
     } else {
@@ -31,12 +32,12 @@ sagaJs.onOrchestrationStep("stepB", StepType.Compensation, (context) => {
 
 sagaJs.onOrchestrationStep("stepC", StepType.Step, (context) => {
     console.log("stepC", context);
-    // if (Math.random() < 0.3) {
-    //     context.complete({ stepC: 'done' });
+    if (Math.random() < 0.2) {
+        context.complete({ stepC: 'done' });
 
-    // } else {
+    } else {
         context.fail({ stepC: 'failed' });
-    // }
+    }
 });
 
 sagaJs.onOrchestrationStep("stepC", StepType.Compensation, (context) => {
@@ -44,6 +45,6 @@ sagaJs.onOrchestrationStep("stepC", StepType.Compensation, (context) => {
     context.complete({ CompensationC: 'done' });
 });
 
-sagaJs.createOrchestrationByInstruction("Org1", ["stepA", "stepB", "stepC"]);
+sagaJs.createOrchestrationByInstruction("Org1", ["stepA", "stepB", "stepC"],2);
 
 sagaJs.runOrchestration("Org1", { start: 'here' });

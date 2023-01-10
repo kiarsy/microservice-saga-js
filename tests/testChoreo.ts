@@ -1,4 +1,4 @@
-import { InMemoryCommunication } from "../src/Communication/inMemoryCommunication";
+import { InMemoryTransport } from "../src/Transport/inMemoryCommunication";
 import { SagaJS } from "../src/index";
 import { JsonTransformer } from "../src/Transformer/JsonTransformer";
 

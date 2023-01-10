@@ -1,4 +1,4 @@
-import { ICommunication } from '../Communication/ICommunication';
+import { ITransport } from '../Transport/ITransport';
 import { SagaContextParam } from '../Utilities/types';
 
 export class BaseContext {
@@ -6,7 +6,7 @@ export class BaseContext {
   _orchestrationKey: string;
   _payload: any;
   _stepKey: string;
-  _communication: ICommunication;
+  _communication: ITransport;
   _steps: string[];
   _eventSequence: number = 0;
   _response?: boolean;
