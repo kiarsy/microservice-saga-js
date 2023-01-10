@@ -1,8 +1,8 @@
 import { SagaJS } from "../src/index";
-import { InMemoryCommunication } from "../src/Communication/inMemoryCommunication";
+import { InMemoryTransport } from "../src/Transport/InMemoryTransport";
 import { StepType } from "../src/Utilities/StepType";
 
-const sagaJs = new SagaJS(new InMemoryCommunication());
+const sagaJs = new SagaJS(new InMemoryTransport());
 
 sagaJs.onOrchestrationStep("stepA", StepType.Step, (context) => {
     console.log("StepA", context);

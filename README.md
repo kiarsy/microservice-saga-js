@@ -4,6 +4,7 @@
 
 - [ ] abstraction for saving state
 - [ ] complete readme.md
+- [ ] json constructor
 - [ ] orchestration must have final state > Pending, Completed, Failing, Failed
 - [x] Key generator abstraction
 - [ ] corelation key and id key
