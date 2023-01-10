@@ -1,16 +1,16 @@
 import { BaseContext } from '../Context/BaseContext';
 import { ITransport } from './ITransport';
-import { ITransformer } from '../Transformer/ITransformer';
+import { IEncoder } from '../Encoder/IEncoder';
 import { OrchestrationCallback, OrchestrationStepCallback } from '../Utilities/types';
 import { OrchestrationStepContext } from '../Context/OrchestrationStepContext';
 import { OrchestrationContext } from '../Context/OrchestrationContext';
-import { JsonTransformer } from '../Transformer/JsonTransformer';
+import { JsonEncoder } from '../Encoder/JsonTransformer';
 
 export class InMemoryTransport extends ITransport {
   commit(): void {
     return;
   }
-  constructor(protected readonly transformer: ITransformer = new JsonTransformer()) {
+  constructor(protected readonly transformer: IEncoder = new JsonEncoder()) {
     super(transformer);
   }
 

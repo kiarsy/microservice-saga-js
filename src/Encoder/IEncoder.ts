@@ -1,4 +1,4 @@
-export abstract class ITransformer {
+export abstract class IEncoder {
   to(data: Record<string, any>): Buffer {
     return this.toBuffer(data);
   }
