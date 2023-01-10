@@ -4,7 +4,7 @@ import { IEncoder } from '../Encoder/IEncoder';
 import { OrchestrationCallback, OrchestrationStepCallback } from '../Utilities/types';
 import { OrchestrationStepContext } from '../Context/OrchestrationStepContext';
 import { OrchestrationContext } from '../Context/OrchestrationContext';
-import { JsonEncoder } from '../Encoder/JsonTransformer';
+import { JsonEncoder } from '../Encoder/JsonEncoder';
 
 export class InMemoryTransport extends ITransport {
   commit(): void {
