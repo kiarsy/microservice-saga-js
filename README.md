@@ -13,7 +13,6 @@
 - [x] communicationTransformLayer : json | protoBuff
 - [x] compensation
 - [x] retry
-- [ ] choregraphy
 - [ ] timeout
 - [ ] Wrappers
 - [ ] status on each step
